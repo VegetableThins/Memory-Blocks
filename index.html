@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="https://fonts.googleapis.com/css2?family=Cutive+Mono&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="main.css">
+        <title>Memory Blocks Game</title>
+        
+    </head>
+    <body>
+       
+        
+        <script src="main.js" async defer></script>
+        <div id="gameWrapper">
+            <h1>MEMORY BLOCKS</h1>
+            <label id="victory"></label>
+            <div id="game"></div>
+            <div id="score">
+                <label id="moves"></label>
+                <label id="matches"></label>
+            </div>
+            <div id="difficultyWrapper">
+                <label>Choose your Difficulty:</label>
+                <select id="difficulty">
+                    <option value="2">Beginner</option>
+                    <option value="4">Easy</option>
+                    <option value="6">Medium</option>
+                    <option value="8">Hard</option>
+                    <option value="10">Expert</option>
+                </select>
+                <button id="startGame" onclick="startGame();">Start Game</button>
+            </div>
+        </div>
+    </body>
+    <script src="https://kit.fontawesome.com/1f4bf673ad.js" crossorigin="anonymous"></script>
+</html>
