@@ -7,14 +7,14 @@ var allowed = [2,4,6,8,10];
 
 function startGame() {
     var timer = null;
-    var moves = 0;
+    var attempts = 0;
     var matches = 0;
     var gameContainer = document.getElementById('game');
     gameContainer.innerHTML = '';
     document.getElementById('victory').innerText = "";
     document.getElementById('difficultyWrapper').style.display = 'none';
     document.getElementById('score').style.display = 'block';
-    document.getElementById('moves').innerText = "moves: "+moves;
+    document.getElementById('attempts').innerText = "attempts: "+attempts;
     document.getElementById('matches').innerText = "matches: "+matches;
     var difficulty = parseInt(document.getElementById('difficulty').value);
     var brandsCopy = JSON.parse(JSON.stringify(brands));
@@ -37,33 +37,41 @@ function startGame() {
             row.append(brand);
             
             brand.addEventListener('click', function(event){
-                moves++;
-                event.currentTarget.classList.add('reveal');
-               
-                var revealed = document.querySelectorAll('.reveal');
-                if(revealed.length == 2){
-                    if(revealed[0].getAttribute('class') == revealed[1].getAttribute('class')){
-                        revealed[0].classList.add('matched');
-                        revealed[1].classList.add('matched');
-                        matches++;
-                        
-                    }
-                    
-                    if(document.querySelectorAll('.matched').length == difficulty*difficulty){
-                        document.getElementById('victory').innerText = "Congratulations!\nYou completed the game in "+moves+" moves!\nPlay Again?";
-                        document.getElementById('difficultyWrapper').style.display = 'block';
-                        document.getElementById('score').style.display = 'none';
-                    }else{
-                        document.getElementById('victory').innerText = "";
-                    }
-                    timer = setTimeout(function(){ 
-                        revealed[0].classList.remove('reveal');
-                        revealed[1].classList.remove('reveal');
-                    }, 320);
+                
+                var currentTarget = event.currentTarget;
+                currentTarget.classList.add('reveal');
+
+                if(document.querySelectorAll('.reveal').length == 2){
+                    attempts++;
                 }
                 
-                document.getElementById('moves').innerText = "moves: "+moves;
-                document.getElementById('matches').innerText = "matches: "+matches;
+                setTimeout(function(){
+                    var revealed = document.querySelectorAll('.reveal');
+                    if(revealed.length == 2){
+                        
+                        if(revealed[0].getAttribute('class') == revealed[1].getAttribute('class')){
+                            revealed[0].classList.add('matched');
+                            revealed[1].classList.add('matched');
+                            matches++;
+                        }
+                        if(document.querySelectorAll('.matched').length == difficulty*difficulty){
+                            document.getElementById('victory').innerText = "Congratulations!\nYou completed the game in "+attempts+" attempts!\nPlay Again?";
+                            document.getElementById('difficultyWrapper').style.display = 'block';
+                            document.getElementById('score').style.display = 'none';
+                        }else{
+                            
+                            document.getElementById('victory').innerText = "";
+                        }
+                        timer = setTimeout(function(){ 
+                            console.log('removed');
+                            revealed[0].classList.remove('reveal');
+                            revealed[1].classList.remove('reveal');
+                        }, 500);
+                    }
+                    
+                    document.getElementById('attempts').innerText = "attempts: "+attempts;
+                    document.getElementById('matches').innerText = "matches: "+matches;
+                }, 300);
             });
         }
         gameContainer.append(row);

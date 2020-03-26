@@ -1,10 +1,9 @@
-body{
-    background: turquoise;
+html{
+    background: linear-gradient( #0C2C40, #A65B69);
+    height: 100%;
 }
 #game{
-    text-align: center;
-    
-    
+    text-align: center; 
 }
 
 #difficultyWrapper input{
@@ -17,9 +16,9 @@ h1,
 #victory,
 #difficultyWrapper select,
 #difficultyWrapper label,
-#moves, #matches{
+#attempts, #matches{
     font-family: 'Cutive Mono', monospace;
-    color:white;
+    color:#F2F2F2;
     display: block;
     margin: 0 auto;
     text-align: center;
@@ -29,17 +28,18 @@ h1,
 
 #difficultyWrapper select,
 #difficultyWrapper button{
-    background: #dddddd;
-    color: black;
+    background: #F2F2F2;
+    color: #0D0D0D;
     border: none;
     font-size: 18px;
+    font-weight: bold;
     outline: none;
 }
 
 #difficultyWrapper button{
     padding: 10px;
     border-radius: 10px;
-    box-shadow: 0px 2px 2px 0px #bbb;
+    box-shadow: 0px 2px 2px 0px #0C2C40;
     transition: 0.2s ease-in-out border-radius;
 }
 
@@ -57,7 +57,8 @@ label{
 } */
 
 #difficultyWrapper button:active{
-    background: #cccccc;
+    background: #0C2C40;
+    color: white;
     box-shadow: none;
 }
 
@@ -65,28 +66,71 @@ label{
 i.fab{
     position: relative;
     display: inline-block;
-    background: #eeeeee;
-    color: black;
-    width: 30px;
-    height: 30px;
-    line-height: 30px;
-    font-size: 30px;
+    background: linear-gradient(135deg, #ccc, #aaa);
+    color: #0D0D0D;
+    width: 35px;
+    height: 35px;
+    line-height: 35px;
+    font-size: 35px;
     padding: 10px;
     text-align: center;
-    border: 1px solid #cccccc;
+    border: 1px solid #0C2C40;
     cursor: pointer;
+    /* transform: rotateY(-180deg); */
 }
 
+.reveal:not(.matched){
+    animation: 0.3s flip-scale-2-ver-right linear both;
+}
+
+.matched{
+    animation: 0.2s matched-animation linear both;
+    /* transform: scale(1.2); */
+}
 i.fab::after {
     position: absolute;
     top: 0;
     left: 0;
     height: 100%;
     width: 100%;
-    background: #dddddd;
+    background: linear-gradient(45deg, #8c5362, #403c4e);
     content: '';
 }
 
 .reveal::after, .matched::after{
     content: none !important;
 }
+
+@keyframes matched-animation {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.5);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+@keyframes flip-scale-2-ver-right {
+    0% {
+        -webkit-transform: translateX(100%) rotateY(-180deg) scale(1.2);
+                transform: translateX(100%) rotateY(-180deg) scale(1.2);
+        -webkit-transform-origin: 0% 50%;
+                transform-origin: 0% 50%;
+    }
+    50% {
+        -webkit-transform: translateX(50%) rotateY(-90deg) scale(2);
+                transform: translateX(50%) rotateY(-90deg) scale(2);
+        -webkit-transform-origin: 25% 50%;
+                transform-origin: 25% 50%;
+    }
+    100% {
+        -webkit-transform: translateX(0%) rotateY(0deg) scale(1);
+                transform: translateX(0%) rotateY(0deg) scale(1);
+        -webkit-transform-origin: 100% 50%;
+                transform-origin: 100% 50%;
+    }
+}
+  
